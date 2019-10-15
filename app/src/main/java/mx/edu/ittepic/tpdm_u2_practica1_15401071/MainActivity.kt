@@ -1,5 +1,6 @@
 package mx.edu.ittepic.tpdm_u2_practica1_15401071
 
+import android.content.Intent
 import android.database.sqlite.SQLiteException
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -45,7 +46,11 @@ class MainActivity : AppCompatActivity() {
             println()
         }
         mostrar?.setOnClickListener {
-            pedirID(mostrar?.text.toString())
+            mostrar()
+        }
+        btnaggtarea?.setOnClickListener {
+            val nuevaVentana=Intent(this,Main2Activity::class.java)
+            startActivity(nuevaVentana)
         }
 
 
@@ -75,30 +80,28 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    fun mostrar(id:String, btnEtiqueta:String){
+    fun mostrar(){
         try{
             var transccion = basedatos.readableDatabase
-            var SQL="SELECT * FROM  LISTA WHERE ID="+id
+            var SQL="SELECT * FROM  LISTA"
             var respuesta = transccion.rawQuery(SQL,null)
 
-            if (respuesta.moveToFirst()==true) {
-                var cadena = "DESCRIPCION: " + respuesta.getString(1) + "\nFECHACREACION:" + respuesta.getString(2)
-
-                if (btnEtiqueta.startsWith("MOSTRAR LISTA")) {
+            if (respuesta.moveToFirst()==true){
+                do{
+                    var cadena ="ID:"+respuesta.getString(0)+ "\nDESCRIPCION: " + respuesta.getString(1) + "\nFECHACREACION:" + respuesta.getString(2)
                     mostrarlist?.setText(cadena)
-
-                } else {
-                    mensaje("ERROR", "NO EXISTE ID")
-                }
-
+                }while (respuesta.moveToNext())
 
             }
+            respuesta.close()
+
         }catch (err: SQLiteException){
             mensaje("ERRO","NO SE ENCUENTRA")
 
         }
     }
 
+    /*
     fun  pedirID(etiqueta:String){
         var campo = EditText(this)
         campo.inputType =InputType.TYPE_CLASS_NUMBER
@@ -114,6 +117,8 @@ class MainActivity : AppCompatActivity() {
 
             }.setNeutralButton("CANCELAR"){dialog, which ->  }.show()
     }
+
+     */
 
     fun mensaje(t:String,m:String){
         AlertDialog.Builder(this).setTitle(t).setMessage(m).setPositiveButton("ok"){ dialog, which ->  }.show()

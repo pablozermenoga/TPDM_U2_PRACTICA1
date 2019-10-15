@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:text="DESCRIPCION DE TAREA:"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,13 +25,26 @@
         android:layout_height="wrap_content"
         android:text="REALIZADO"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="5"
         android:layout_marginLeft="10dp"
         android:id="@+id/realizado"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="5"
+        android:id="@+id/editID"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,4 +57,11 @@
         android:text="eliminar tarea"
         android:id="@+id/btneliminar"
         android:layout_gravity="center"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:text="MOSTRAR LISTAS "
+        android:id="@+id/btnlistas"/>
 </LinearLayout>
